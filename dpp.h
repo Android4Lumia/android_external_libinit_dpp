@@ -63,7 +63,7 @@ namespace dpp {
             {
                 .device =      "fame_lta",
                 .family =      "fame",
-                .description = "Lumia 520 (RM-913)",
+                .description = "Lumia 520 (RM-915)",
             }
         },
         {
