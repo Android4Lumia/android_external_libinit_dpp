@@ -1,12 +1,26 @@
 #include <string>
 #include <map>
 
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
+
 #define DPP_PARTITION  "/dev/block/mmcblk0p1"
 #define DPP_MOUNTPOINT "/dpp"
 #define DPP_FS         "vfat"
 #define DPP_FLAGS      MS_RDONLY|MS_NOATIME|MS_NODEV|MS_NODIRATIME|MS_NOEXEC|MS_NOSUID
 #define DPP_DATA       "shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0"
 #define PRODUCT_DAT    "/dpp/Nokia/product.dat"
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
 
 namespace dpp {
 

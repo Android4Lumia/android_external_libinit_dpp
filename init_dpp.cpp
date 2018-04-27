@@ -34,6 +34,7 @@
 
 #include <sys/stat.h>
 #include <sys/mount.h>
+#include <unistd.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -124,8 +125,8 @@ dpp::device dpp::get_device() {
 
 void ds_properties()
 {
-    property_set("persist.radio.multisim.config", "dsds");
-    property_set("persist.radio.dont_use_dsd", "true");
+    property_override("persist.radio.multisim.config", "dsds");
+    property_override("persist.radio.dont_use_dsd", "true");
 }
 
 void vendor_load_properties()
@@ -134,7 +135,7 @@ void vendor_load_properties()
 
     dev = dpp::get_device();
 
-    property_set("ro.product.device", dev.device.c_str());
-    property_set("ro.product.name",   ("lineage_" + dev.family).c_str());
-    property_set("ro.product.model",  dev.description.c_str());
+    property_override("ro.product.device", dev.device.c_str());
+    property_override("ro.product.name",   ("lineage_" + dev.family).c_str());
+    property_override("ro.product.model",  dev.description.c_str());
 }
