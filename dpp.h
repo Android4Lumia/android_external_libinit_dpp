@@ -41,6 +41,14 @@ namespace dpp {
 
     std::map<std::string, dpp::device> devices = {
         {
+            "RM-846",
+            {
+                .device =      "sand_row",
+                .family =      "sand",
+                .description = "Lumia 620 (RM-846)",
+            }
+        },           
+        {
             "RM-885",
             {
                 .device =      "zeal_row",
